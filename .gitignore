@@ -6,4 +6,8 @@ info
 /malina.js.map
 /compile.js
 /compile.js.map
+/web-compiler.mjs
+/web-compiler.mjs.br
+/web-compiler.mjs.gz
+/web-compiler.mjs.map
 /runtime.js

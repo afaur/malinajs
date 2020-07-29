@@ -1,6 +1,6 @@
 
-import acorn from 'acorn';
-import astring from 'astring';
+import { parse } from 'acorn';
+import { generate } from 'astring';
 import { assert } from './utils.js'
 
 
@@ -21,7 +21,7 @@ export function transformJS(code, option={}) {
             if(code != '!check-stop') return line;
             return rx[1] + '$$_checkStop;';
         }).join('\n');
-        ast = acorn.parse(code, {sourceType: 'module'});
+        ast = parse(code, {sourceType: 'module'});
     } else {
         ast = {
             body: [],
@@ -291,7 +291,7 @@ export function transformJS(code, option={}) {
     ast.body = [widgetFunc];
     ast.body.unshift.apply(ast.body, imports);
 
-    result.code = astring.generate(ast);
+    result.code = generate(ast);
     return result;
 }
 
@@ -313,7 +313,7 @@ function makeEmitter() {
 
 
 function parseExp(exp) {
-    let ast = acorn.parse(exp);
+    let ast = parse(exp);
     assert(ast.body.length == 1);
     return ast.body[0];
 }

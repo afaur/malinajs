@@ -1,5 +1,5 @@
 
-import acorn from 'acorn';
+import { parse } from 'acorn';
 
 
 export function assert(x, info) {
@@ -28,7 +28,7 @@ export function isSimpleName(name) {
 export function detectExpressionType(name) {
     if(isSimpleName(name)) return 'identifier';
 
-    let ast = acorn.parse(name);
+    let ast = parse(name);
 
     function checkIdentificator(body) {
         if(body.length != 1) return;
